@@ -3,19 +3,22 @@ Front-end boilerplate for faster and easier web development.
 
 ## Components
 * Normalize 2.1.0
+* BY Grid 1.0.0 (based on v3.0.0 of Twitter's Bootstrap)
 * Modernizr 2.6.2
 * jQuery 1.9.1
 * Grunt 0.4.1  
 
 ## Installation
-  git clone https://github.com/s3rgiosan/bystarter.git YOUR-SITE-NAME  
-  npm install  
-  grunt server
+```
+git clone https://github.com/s3rgiosan/bystarter.git YOUR-SITE-NAME
+npm install
+grunt server
+```
 
 ## Usage
 
 ### Development
-`grunt server` creates a static server at port 9001 that watches for file changes and enables the livereload snippet.  
+`grunt server` creates a static server at port 9001 that watches for file changes and enables livereload.  
 `grunt` is the same that running `grunt styles` and `grunt scripts` individually.  
 `grunt styles` compiles LESS files to CSS and lints all the generated files.  
 `grunt scripts` validates JS files with JSHint and concatenates different files into one.  
