@@ -10,7 +10,7 @@ Front-end boilerplate for faster and easier web development.
 
 ## Installation
 ```
-git clone https://github.com/s3rgiosan/bystarter.git YOUR-SITE-NAME
+git clone https://github.com/bycom/bystarter.git YOUR-SITE-NAME
 npm install
 grunt server
 ```
