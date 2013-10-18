@@ -1,3 +1,6 @@
+// UTILITIES
+// --------------------------------------------------
+
 // Clearfix
 // Source: http://nicolasgallagher.com/micro-clearfix-hack/
 //
@@ -19,12 +22,185 @@
   }
 }
 
+// Webkit-style focus
+.tab-focus(@color: #E0E0E0) {
+  outline: thin dotted @color;
+  outline-offset: 2px;
+}
+
+// Sizing shortcuts
+.size(@width: auto; @height: auto) {
+  width: @width;
+  height: @height;
+}
+
+// CSS image replacement
+// Source: https://github.com/h5bp/html5-boilerplate/commit/aa0396eae757
+.hide-text() {
+  font: ~"0/0" a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+// Background image shortcut
+.bg(@img, @posx: 0, @posy: 0, @rep: no-repeat, @col: transparent, @pos: scroll) {
+     background: url('../images/@{img}') @pos @rep @posx @posy @col;
+}
+
+// Background image position shortcut
+.bg-pos(@posx: 0, @posy: 0) {
+    background-position: @posx @posy;
+}
+
+// Grayscale
+.grayscale() {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%); /* For Webkit browsers */
+  filter: gray; /* For IE 6 - 9 */
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+}
+
+// Disable grayscale
+.disable-grayscale() {
+  filter: grayscale(0%);
+  -webkit-filter: grayscale(0%);
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+}
+
+// Horizontal and vertical centering
+// http://coding.smashingmagazine.com/2013/08/09/absolute-horizontal-vertical-centering-css/
+.centered() {
+  display: table;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index: 10;
+}
+
+
+// CSS3 PROPERTIES
+// --------------------------------------------------
+
+// Border radius
+.radius(@radius) {
+  -webkit-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+// Transitions
+.transition(@transition) {
+  -webkit-transition: @transition;
+          transition: @transition;
+}
+
+.transition-transform(@transition) {
+  -webkit-transition: -webkit-transform @transition;
+     -moz-transition: -moz-transform @transition;
+       -o-transition: -o-transform @transition;
+          transition: transform @transition;
+}
+
+.dbl-transition(@transition1, @transition2) {
+  -webkit-transition: @transition1, @transition2;
+          transition: @transition1, @transition2;
+}
+
+// Transformations
+.rotate(@degrees) {
+  -webkit-transform: rotate(@degrees);
+      -ms-transform: rotate(@degrees);
+          transform: rotate(@degrees);
+}
+
+.scale(@ratio) {
+  -webkit-transform: scale(@ratio);
+      -ms-transform: scale(@ratio);
+          transform: scale(@ratio);
+}
+
+.skew(@x; @y) {
+  -webkit-transform: skew(@x, @y);
+      -ms-transform: skewX(@x) skewY(@y);
+          transform: skew(@x, @y);
+}
+
+.translate(@x; @y) {
+  -webkit-transform: translate(@x, @y);
+      -ms-transform: translate(@x, @y);
+          transform: translate(@x, @y);
+}
+
+.translate3d(@x; @y; @z) {
+  -webkit-transform: translate3d(@x, @y, @z);
+          transform: translate3d(@x, @y, @z);
+}
+
+// Box sizing
+.box-sizing(@boxmodel) {
+  -webkit-box-sizing: @boxmodel;
+     -moz-box-sizing: @boxmodel;
+          box-sizing: @boxmodel;
+}
+
+// Animation
+.animation(@animation) {
+  -webkit-animation: @animation;
+          animation: @animation;
+}
+
+// Opacity
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
+
+
+// GRADIENTS
+// --------------------------------------------------
+
+// Horizontal gradient, from left to right
+.gradient-horizontal(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+  background-image: -webkit-gradient(linear, @start-percent top, @end-percent top, from(@start-color), to(@end-color));
+  background-image: -webkit-linear-gradient(left, color-stop(@start-color @start-percent), color-stop(@end-color @end-percent));
+  background-image: -moz-linear-gradient(left, @start-color @start-percent, @end-color @end-percent);
+  background-image:  linear-gradient(to right, @start-color @start-percent, @end-color @end-percent);
+  background-repeat: repeat-x;
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color)));
+}
+
+// Vertical gradient, from top to bottom
+.gradient-vertical(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+  background-image: -webkit-gradient(linear, left @start-percent, left @end-percent, from(@start-color), to(@end-color));
+  background-image: -webkit-linear-gradient(top, @start-color, @start-percent, @end-color, @end-percent);
+  background-image:  -moz-linear-gradient(top, @start-color @start-percent, @end-color @end-percent);
+  background-image: linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent);
+  background-repeat: repeat-x;
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color)));
+}
+
+
+// GRID SYSTEM
+// --------------------------------------------------
+
 // Centered container element
 .container-fixed() {
   margin-right: auto;
   margin-left: auto;
-  padding-left:  (@grid-gutter-width / 2);
-  padding-right: (@grid-gutter-width / 2);
+  padding-left:  @grid-gutter-width;
+  padding-right: @grid-gutter-width;
   .clearfix();
 }
 
@@ -34,3 +210,7 @@
   margin-right: (@gutter / -2);
   .clearfix();
 }
+
+
+// CUSTOM
+// --------------------------------------------------
