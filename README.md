@@ -35,5 +35,5 @@ grunt server
 * Internet Explorer 8+
 
 ## Authors and Contributors
-Sérgio Santos (@s3rgiosan)
+Sérgio Santos (@s3rgiosan)  
 Luís Hebbelinck (@bylhebbelinck)
