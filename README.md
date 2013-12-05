@@ -36,3 +36,4 @@ grunt server
 
 ## Authors and Contributors
 Sérgio Santos (@s3rgiosan)
+Luís Hebbelinck (@bylhebbelinck)
