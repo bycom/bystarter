@@ -155,8 +155,5 @@ $RECYCLE.BIN/
 # Mac desktop service store files
 .DS_Store
 
-besi.sublime-project
-besi.sublime-workspace
-
 html/dist
 node_modules
