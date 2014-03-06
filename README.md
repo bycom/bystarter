@@ -3,7 +3,7 @@ Front-end boilerplate for faster and easier web development.
 
 ## Components
 * Normalize 2.1.0
-* BY Grid 1.0.0 (based on v3.0.0 of Twitter's Bootstrap)
+* BY Grid 1.1.0 (based on v3.1.1 of Twitter's Bootstrap)
 * Modernizr 2.6.2
 * jQuery 1.9.1
 * Grunt 0.4.1  
