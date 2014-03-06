@@ -7,6 +7,16 @@ Front-end boilerplate for faster and easier web development.
 * Modernizr 2.6.2
 * jQuery 1.9.1
 * Grunt 0.4.1  
+  * [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch)  
+  * [grunt-contrib-connect](https://github.com/gruntjs/grunt-contrib-connect)  
+  * [grunt-contrib-less](https://github.com/gruntjs/grunt-contrib-less)  
+  * [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin)  
+  * [grunt-combine-media-queries](https://github.com/buildingblocks/grunt-combine-media-queries)  
+  * [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint)  
+  * [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat)  
+  * [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)  
+  * [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)  
+
 
 ## Installation
 ```
@@ -17,15 +27,35 @@ grunt server
 
 ## Usage
 
-### Development
-`grunt server` creates a static server at port 9001 that watches for file changes and enables livereload.  
-`grunt` is the same that running `grunt styles` and `grunt scripts` individually.  
-`grunt styles` compiles LESS files to CSS and lints all the generated files.  
-`grunt scripts` validates JS files with JSHint and concatenates different files into one.  
-`grunt images` minifies PNG and JPEG images.  
+Create a static server at port 9001 that watches for file changes and enables livereload:
+```
+grunt server
+```
 
-### Production
-`grunt dist` cleans the dist folder, compiles LESS, validates and minifies CSS and JS, compresses images and copies selected files to dist folder.  
+Compile LESS to CSS and lint all the generated files:
+```
+grunt styles
+```
+
+Validate JS with JSHint and concatenates different files to one:
+```
+grunt scripts
+```
+
+Minify PNG and JPEG images:
+```
+grunt images
+```
+
+Development build:
+```
+grunt
+```
+
+Production build:
+```
+grunt dist
+``` 
 
 ## Browser Support
 * Mozilla Firefox 5+

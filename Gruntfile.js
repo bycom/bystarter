@@ -7,26 +7,6 @@ module.exports = function(grunt) {
 
     pkg: grunt.file.readJSON('package.json'),
 
-    // Reload assets live in the browser
-    // https://github.com/gruntjs/grunt-contrib-livereload
-    livereload: {
-      port: 35729
-    },
-
-    // Start a connect web server
-    // https://github.com/gruntjs/grunt-contrib-connect
-    connect: {
-      server: {
-        options: {
-          hostname: '',
-          port: 9001,
-          base: 'html'
-        }
-      }
-    },
-
-    // Run predefined tasks whenever watched file patterns are added, changed or deleted
-    // https://github.com/gruntjs/grunt-contrib-watch
     watch: {
       options: {
         livereload: true
@@ -35,12 +15,21 @@ module.exports = function(grunt) {
       tasks: ['default']
     },
 
-    // Compile LESS files to CSS
-    // https://github.com/gruntjs/grunt-contrib-less
+    connect: {
+      server: {
+        options: {
+          hostname: '',
+          port: 9001,
+          base: 'html',
+          open: true
+        }
+      }
+    },
+
     less: {
       development: {
         options: {
-          paths: ['html/css/src'] // Specifies directories to scan for @import directives when parsing
+          paths: ['html/css/src']
         },
         files: {
           'html/css/main.css':        'html/css/src/main.less'
@@ -56,11 +45,10 @@ module.exports = function(grunt) {
       }
     },
 
-    // Compress CSS files
-    // https://github.com/gruntjs/grunt-contrib-cssmin
     cssmin: {
       options: {
-        banner: '/*\n <%= pkg.description %>\n @author: <%= pkg.author %>\n @email: <%= pkg.email %>\n @url: <%= pkg.homepage %>\n @version: <%= pkg.version %>\n*/\n'
+        banner: '/*\n <%= pkg.description %>\n @author: <%= pkg.author %>\n @email: <%= pkg.email %>\n @url: <%= pkg.homepage %>\n @version: <%= pkg.version %>\n*/\n',
+        keepSpecialComments: 0
       },
       minify: {
         expand: true,
@@ -71,18 +59,30 @@ module.exports = function(grunt) {
       }
     },
 
-    // Validate files with JSHint
-    // https://github.com/gruntjs/grunt-contrib-jshint
+    cmq: {
+      options: {
+        log: true
+      },
+      development: {
+        files: {
+          'html/css': ['html/css/*.css']
+        }
+      },
+      dist: {
+        files: {
+          'html/dist/css': ['html/css/*.css']
+        }
+      }
+    },
+
     jshint: {
       options: {
-        node: true  // This option defines globals available when your code is running inside of the Node runtime environment
+        node: true
       },
       beforeconcat: ['Gruntfile.js', 'html/scripts/src/*.js'],
       afterconcat: ['html/scripts/main.js']
     },
 
-    // Concatenate files
-    // https://github.com/gruntjs/grunt-contrib-concat
     concat: {
       development: {
         src: ['html/scripts/src/*.js'],
@@ -94,8 +94,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Minify files with UglifyJS
-    // https://github.com/gruntjs/grunt-contrib-uglify
     uglify: {
       options: {
         banner: '/*!\n <%= pkg.description %>\n @author: <%= pkg.author %>\n @email: <%= pkg.email %>\n @url: <%= pkg.homepage %>\n @version: <%= pkg.version %>\n*/\n'
@@ -107,12 +105,12 @@ module.exports = function(grunt) {
       }
     },
 
-    // Minify PNG and JPEG images
-    // https://github.com/gruntjs/grunt-contrib-imagemin
     imagemin: {
       dist: {
         options: {
-          optimizationLevel: 3
+          optimizationLevel: 7,
+          pngquant: true,
+          progressive: true
         },
         files: [
           {
@@ -125,8 +123,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Copy files and folders
-    // https://github.com/gruntjs/grunt-contrib-copy
     copy: {
       main: {
         files: [
@@ -160,47 +156,27 @@ module.exports = function(grunt) {
       }
     },
 
-    // Clean files and folders
-    // https://github.com/gruntjs/grunt-contrib-clean
     clean: ['html/dist']
 
   });
 
-  // Load the plugins that provide the tasks we specified in package.json
-  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
-
-  // File tasks
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
-
-  // Styles tasks
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-    
-  // Scripts tasks
+  grunt.loadNpmTasks('grunt-combine-media-queries');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-
-  // Images tasks
   grunt.loadNpmTasks('grunt-contrib-imagemin');
 
-  // Styles
-  grunt.registerTask('styles', ['less:development']);
-
-  // Scripts
+  grunt.registerTask('styles', ['less:development', 'cmq:development']);
   grunt.registerTask('scripts', ['jshint:beforeconcat', 'concat:development', 'jshint:afterconcat']);
-
-  // Images
   grunt.registerTask('images', ['imagemin']);
-
-  // Development build (default)
   grunt.registerTask('default', ['styles', 'scripts']);
-
-  // Production build
-  grunt.registerTask('dist', ['clean', 'less:dist', 'cssmin', 'jshint:beforeconcat', 'concat:dist', 'jshint:afterconcat', 'uglify:dist', 'imagemin', 'copy']);
-
-  // Server
+  grunt.registerTask('dist', ['clean', 'less:dist', 'cmq:dist', 'cssmin', 'jshint:beforeconcat', 'concat:dist', 'jshint:afterconcat', 'uglify:dist', 'imagemin', 'copy']);
   grunt.registerTask('server', ['connect', 'watch']);
+
 };
