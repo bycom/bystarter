@@ -17,6 +17,10 @@ Front-end boilerplate for faster and easier web development.
   * [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)  
   * [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)  
 
+### LiveReload
+You can use livereload on your page by installing a browser extension or script:
+* [Chrome Extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en)
+* ```<script src="//localhost:35729/livereload.js"></script>```
 
 ## Installation
 ```
