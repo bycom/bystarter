@@ -17,6 +17,7 @@
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-imagemin": "~0.1.4",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-clean": "~0.4.1"
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-combine-media-queries": "^1.0.15"
   }
 }

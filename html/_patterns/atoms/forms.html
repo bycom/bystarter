@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>BY Starter</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="/css/main.css">
+
+    <script src="/scripts/libs/modernizr-2.6.2.min.js"></script>
+  </head>
+  <body>
+
+    <h1>Forms</h1>
+    
+    <fieldset>
+      <legend>Generic text inputs and dropdowns</legend>
+
+      <!-- INPUT TEXT -->
+      <div class="field-container">
+        <label for="text">Text Input <abbr title="Required">*</abbr></label>
+        <input type="text" id="text" name="name" placeholder="Text Input" required="required">
+      </div>
+
+      <!-- INPUT TEL -->
+      <div class="field-container">
+        <label for="tel">Telephone <abbr title="Required">*</abbr></label>
+        <input type="tel" data-type="phone" id="tel" name="tel" placeholder="Your phone number" required="required">
+      </div>
+
+      <!-- INPUT PASSWORD -->
+      <div class="field-container">
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Type your Password" required="required">
+      </div>
+
+      <!-- INPUT URL -->
+      <div class="field-container">
+        <label for="webaddress">Web Address</label>
+        <input type="url" id="webaddress" name="webaddress" placeholder="Your email"  required="required">
+      </div>
+
+      <!-- INPUT EMAIL -->
+      <div class="field-container">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Your email"  required="required">
+      </div>
+
+      <!-- INPUT SEARCH -->
+      <div class="field-container">
+        <label for="search">Search</label>
+        <input id="search" type="search" placeholder="Enter Search Term">
+      </div>
+
+      <!-- INPUT NUMBER -->
+      <div class="field-container">
+          <label for="number">Number Input <abbr title="Required">*</abbr></label>
+          <input id="number" type="number" placeholder="Enter a Number">
+      </div>
+
+      <!-- TEXTAREA -->
+      <div class="field-container">
+        <label for="textarea">Textarea</label>
+        <textarea id="textarea" name="textarea" rows="3" required="required" placeholder="Comments"></textarea>
+      </div>
+      
+      <!-- SELECT -->
+      <div class="field-container">
+          <label for="select">Select</label>
+          <select id="select" name="select" required="required">
+            <option value="">Please select an option</option>
+            <option value="1">option 1</option>
+            <option value="2">option 2</option>
+            <option value="3">option 3</option>
+            <option value="4">option 4</option>
+            <option value="5">option 5</option>
+          </select>
+      </div>
+
+      <!-- ERROR /SUCCESS -->
+      <div class="field-container">
+          <label class="error">Error Input</label>
+          <input class="is-error" type="text" placeholder="Text Input">
+      </div>
+      <div class="field-container">
+          <label  class="valid">Valid</label>
+          <input  class="is-valid" type="text" placeholder="Text Input">
+      </div>
+    </fieldset>
+
+    <fieldset class="options">
+      <legend>Radio buttons and checkboxes</legend>
+
+      <div class="field-container">
+        <!-- RADIO BUTTONS -->
+        <ul>
+          <li><label for="radio1"><input id="radio1" name="radio" type="radio" class="radio" checked="checked"> Option 1</label></li>
+          <li><label for="radio2"><input id="radio2" name="radio" type="radio" class="radio"> Option 2</label></li>
+          <li><label for="radio3"><input id="radio3" name="radio" type="radio" class="radio"> Option 3</label></li>
+        </ul>
+
+        <!-- CHECKBOXES -->
+        <ul>
+          <li><label for="checkbox1"><input id="checkbox1" name="checkbox" type="checkbox" checked="checked"> Choice A</label></li>
+          <li><label for="checkbox2"><input id="checkbox2" name="checkbox" type="checkbox"> Choice B</label></li>
+          <li><label for="checkbox3"><input id="checkbox3" name="checkbox" type="checkbox"> Choice C</label></li>
+        </ul>
+      </div>
+    </fieldset>
+    
+    <!-- GENERIC SUBMIT BUTTON -->
+    <input type="submit" value="Send" class="btn-submit" id="btn-submit" name="btn-submit">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/scripts/libs/jquery-1.9.1.min.js"><\/script>')</script>
+
+    <script src="/scripts/plugins.js"></script>
+    <script src="/scripts/main.js"></script>
+  </body>
+</html>
