@@ -71,3 +71,4 @@ grunt dist
 ## Authors and Contributors
 Sérgio Santos (@s3rgiosan)  
 Luís Hebbelinck (@bylhebbelinck)
+Ana Silva (@yana-vertigo)

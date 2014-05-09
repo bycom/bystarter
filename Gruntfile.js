@@ -2,16 +2,36 @@
 
 module.exports = function(grunt) {
 
-  // Initializes the Grunt tasks with the following settings
+  var globalConfig = {
+    root: 'html',
+    src: {
+      styles: '_stylesheets',
+      scripts: '_scripts',
+      images: 'images',
+      html: '_patterns'
+    },
+    dest: {
+      styles: 'css',
+      scripts: 'scripts',
+      images: 'images'
+    }
+  };
+
   grunt.initConfig({
 
+    cfg: globalConfig,
     pkg: grunt.file.readJSON('package.json'),
 
     watch: {
       options: {
         livereload: true
       },
-      files: ['html/_stylesheets/**/*.less', 'html/_scripts/**/*.js', 'html/_patterns/**/*.html', 'html/index.html'],
+      files: [
+        '<%= cfg.root %>/<%= cfg.src.styles %>/**/*.less', 
+        '<%= cfg.root %>/<%= cfg.src.scripts %>/**/*.js', 
+        '<%= cfg.root %>/<%= cfg.src.html %>/**/*.html', 
+        '<%= cfg.root %>/index.html'
+      ],
       tasks: ['default']
     },
 
@@ -20,7 +40,7 @@ module.exports = function(grunt) {
         options: {
           hostname: '',
           port: 9001,
-          base: 'html',
+          base: '<%= cfg.root %>',
           open: true
         }
       }
@@ -29,10 +49,10 @@ module.exports = function(grunt) {
     less: {
       development: {
         options: {
-          paths: ['html/_stylesheets']
+          paths: ['<%= cfg.root %>/<%= cfg.src.styles %>']
         },
         files: {
-          'html/css/main.css':        'html/_stylesheets/main.less'
+          '<%= cfg.root %>/<%= cfg.dest.styles %>/main.css': '<%= cfg.root %>/<%= cfg.src.styles %>/main.less'
         }
       }
     },
@@ -44,9 +64,9 @@ module.exports = function(grunt) {
       },
       minify: {
         expand: true,
-        cwd: 'html/css',
+        cwd: '<%= cfg.root %>/<%= cfg.dest.styles %>',
         src: ['*.css', '!*.min.css'],
-        dest: 'html/css/',
+        dest: '<%= cfg.root %>/<%= cfg.dest.styles %>/',
         ext: '.min.css'
       }
     },
@@ -57,7 +77,7 @@ module.exports = function(grunt) {
       },
       development: {
         files: {
-          'html/css': ['html/css/*.css']
+          '<%= cfg.root %>/<%= cfg.dest.styles %>': ['<%= cfg.root %>/<%= cfg.dest.styles %>/*.css']
         }
       }
     },
@@ -66,14 +86,18 @@ module.exports = function(grunt) {
       options: {
         node: true
       },
-      beforeconcat: ['Gruntfile.js', 'html/_scripts/*.js'],
-      afterconcat: ['html/scripts/main.js']
+      beforeconcat: ['Gruntfile.js', '<%= cfg.root %>/<%= cfg.src.scripts %>/*.js'],
+      afterconcat: ['<%= cfg.root %>/<%= cfg.dest.scripts %>/main.js']
     },
 
     concat: {
-      dist: {
-        src: ['html/_scripts/*.js'],
-        dest: 'html/scripts/main.js'
+      development: {
+        src: ['<%= cfg.root %>/<%= cfg.src.scripts %>/*.js'],
+        dest: '<%= cfg.root %>/<%= cfg.dest.scripts %>/main.js'
+      },
+      plugins: {
+        src: ['<%= cfg.root %>/<%= cfg.src.scripts %>/plugins/*.js'],
+        dest: '<%= cfg.root %>/<%= cfg.dest.scripts %>/plugins.js'
       }
     },
 
@@ -81,15 +105,16 @@ module.exports = function(grunt) {
       options: {
         banner: '/*!\n <%= pkg.description %>\n @author: <%= pkg.author %>\n @email: <%= pkg.email %>\n @url: <%= pkg.homepage %>\n @version: <%= pkg.version %>\n*/\n'
       },
-      dist: {
+      development: {
         files: {
-          'html/scripts/main.min.js': ['html/scripts/main.js']
+          '<%= cfg.root %>/<%= cfg.dest.scripts %>/plugins.js':  ['<%= cfg.root %>/<%= cfg.dest.scripts %>/plugins.js'],
+          '<%= cfg.root %>/<%= cfg.dest.scripts %>/main.min.js': ['<%= cfg.root %>/<%= cfg.dest.scripts %>/main.js']
         }
       }
     },
 
     imagemin: {
-      dist: {
+      development: {
         options: {
           optimizationLevel: 7,
           pngquant: true,
@@ -98,54 +123,32 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: 'html/_images',
+            cwd: '<%= cfg.root %>/<%= cfg.src.images %>',
             src: ['**/*.png', '**/*.jpg'],
-            dest: 'html/images'
+            dest: '<%= cfg.root %>/<%= cfg.dest.images %>'
+          }
+        ]
+      }
+    },
+
+    copy: {
+      main: {
+        files: [
+          { 
+            expand: true, 
+            cwd: '<%= cfg.root %>/<%= cfg.src.scripts %>/libs/',
+            src: ['*'], 
+            dest: '<%= cfg.root %>/<%= cfg.dest.scripts %>/libs/',
+            filter: 'isFile'
           }
         ]
       }
     }
 
-    // copy: {
-    //   main: {
-    //     files: [
-    //       { 
-    //         expand: true, 
-    //         cwd: 'html/',
-    //         src: ['css/libs/**'], 
-    //         dest: 'html/dist/'
-    //       },
-    //       { 
-    //         expand: true, 
-    //         cwd: 'html/',
-    //         src: ['scripts/libs/**'], 
-    //         dest: 'html/dist/'
-    //       },
-    //       { 
-    //         expand: true, 
-    //         cwd: 'html/',
-    //         src: ['scripts/i18n/**'], 
-    //         dest: 'html/dist/'
-    //       },
-    //       {
-    //         expand: true, 
-    //         flatten: true, 
-    //         cwd: 'html/',
-    //         src: ['scripts/plugins.js'], 
-    //         dest: 'html/dist/scripts/', 
-    //         filter: 'isFile'
-    //       }
-    //     ]
-    //   }
-    // },
-
-    // clean: ['html/dist']
-
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
-  // grunt.loadNpmTasks('grunt-contrib-copy');
-  // grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-combine-media-queries');
@@ -161,10 +164,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-imagemin');
 
   grunt.registerTask('styles', ['less:development', 'cmq:development']);
-  grunt.registerTask('scripts', ['jshint:beforeconcat', 'concat:dist', 'jshint:afterconcat']);
+  grunt.registerTask('scripts', ['jshint:beforeconcat', 'concat:development', 'concat:plugins', 'jshint:afterconcat', 'copy']);
   grunt.registerTask('images', ['imagemin']);
   grunt.registerTask('default', ['styles', 'scripts']);
-  grunt.registerTask('dist', [/*'clean', */'styles', 'cssmin', 'scripts', 'uglify:dist', 'imagemin'/*, 'copy'*/]);
+  grunt.registerTask('dist', ['styles', 'cssmin', 'scripts', 'uglify:development', 'imagemin']);
   grunt.registerTask('server', ['connect', 'watch']);
 
 };
