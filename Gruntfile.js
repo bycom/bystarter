@@ -92,7 +92,10 @@ module.exports = function(grunt) {
 
     concat: {
       development: {
-        src: ['<%= cfg.root %>/<%= cfg.src.scripts %>/*.js'],
+        src: [
+          '<%= cfg.root %>/<%= cfg.src.scripts %>/main.js',
+          '<%= cfg.root %>/<%= cfg.src.scripts %>/*.js'
+        ],
         dest: '<%= cfg.root %>/<%= cfg.dest.scripts %>/main.js'
       },
       plugins: {
