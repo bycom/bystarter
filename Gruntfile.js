@@ -164,9 +164,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-imagemin');
 
   grunt.registerTask('styles', ['less:development', 'cmq:development']);
-  grunt.registerTask('scripts', ['jshint:beforeconcat', 'concat:development', 'concat:plugins', 'jshint:afterconcat', 'copy']);
+  grunt.registerTask('scripts', ['jshint:beforeconcat', 'concat:development', 'concat:plugins', 'jshint:afterconcat']);
   grunt.registerTask('images', ['imagemin']);
-  grunt.registerTask('default', ['styles', 'scripts']);
+  grunt.registerTask('default', ['styles', 'scripts', 'copy']);
   grunt.registerTask('dist', ['styles', 'cssmin', 'scripts', 'uglify:development', 'imagemin']);
   grunt.registerTask('server', ['connect', 'watch']);
 
