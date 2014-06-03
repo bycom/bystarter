@@ -7,7 +7,7 @@ module.exports = function(grunt) {
     src: {
       styles: '_stylesheets',
       scripts: '_scripts',
-      images: 'images',
+      images: '_images',
       html: '_patterns'
     },
     dest: {
