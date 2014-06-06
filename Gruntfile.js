@@ -3,6 +3,7 @@
 module.exports = function(grunt) {
 
   var globalConfig = {
+    port: 9001,
     root: 'html',
     src: {
       styles: '_stylesheets',
@@ -22,6 +23,17 @@ module.exports = function(grunt) {
     cfg: globalConfig,
     pkg: grunt.file.readJSON('package.json'),
 
+    connect: {
+      server: {
+        options: {
+          hostname: '',
+          port: '<%= cfg.port %>',
+          base: '<%= cfg.root %>',
+          open: true
+        }
+      }
+    },
+
     watch: {
       options: {
         livereload: true
@@ -34,18 +46,7 @@ module.exports = function(grunt) {
       ],
       tasks: ['default']
     },
-
-    connect: {
-      server: {
-        options: {
-          hostname: '',
-          port: 9001,
-          base: '<%= cfg.root %>',
-          open: true
-        }
-      }
-    },
-
+    
     less: {
       development: {
         options: {
@@ -77,14 +78,15 @@ module.exports = function(grunt) {
       },
       development: {
         files: {
-          '<%= cfg.root %>/<%= cfg.dest.styles %>': ['<%= cfg.root %>/<%= cfg.dest.styles %>/*.css']
+          '<%= cfg.root %>/<%= cfg.dest.styles %>': ['<%= cfg.root %>/<%= cfg.dest.styles %>/*.css', '!*.min.css']
         }
       }
     },
     
     jshint: {
       options: {
-        node: true
+        node: true,
+        reporter: require('jshint-stylish')
       },
       beforeconcat: ['Gruntfile.js', '<%= cfg.root %>/<%= cfg.src.scripts %>/*.js'],
       afterconcat: ['<%= cfg.root %>/<%= cfg.dest.scripts %>/main.js']
@@ -165,7 +167,7 @@ module.exports = function(grunt) {
   grunt.registerTask('scripts', ['jshint:beforeconcat', 'concat:development', 'concat:plugins', 'jshint:afterconcat']);
   grunt.registerTask('images', ['imagemin']);
   grunt.registerTask('default', ['styles', 'scripts', 'copy']);
-  grunt.registerTask('dist', ['styles', 'cssmin', 'scripts', 'uglify:development', 'imagemin']);
+  grunt.registerTask('dist', ['styles', 'cssmin', 'scripts', 'uglify:development', 'images']);
   grunt.registerTask('server', ['connect', 'watch']);
 
 };
