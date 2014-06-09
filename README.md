@@ -72,3 +72,4 @@ grunt dist
 Sérgio Santos (@s3rgiosan)  
 Luís Hebbelinck (@bylhebbelinck)  
 Ana Silva (@yana-vertigo)
+Rodrigo Alves (@Rodrigo96)
