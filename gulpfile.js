@@ -44,10 +44,10 @@ gulp.task('watch', function() {
     cfg.root + '/' + cfg.src.scripts + '/**/*.js', 
     cfg.root + '/' + cfg.src.html + '/**/*.html', 
     cfg.root + '/index.html'
-  ], ['livereload']);
+  ], ['scripts', 'styles','livereload']);
 });
 
-gulp.task('livereload', function() {
+gulp.task('livereload', ['styles', 'scripts'], function() {
   gulp.src(cfg.root + '/**/*.html')
     .pipe(connect.reload());
 });
