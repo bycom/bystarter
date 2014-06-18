@@ -17,6 +17,7 @@ Front-end boilerplate for faster and easier web development.
   * [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin)  
   * [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)  
   * [grunt-contrib-copy](https://github.com/gruntjs/grunt-contrib-copy)  
+  * [grunt-spritesmith](https://github.com/Ensighten/grunt-spritesmith)  
 * Gulp 3.7.0
   * [gulp-connect](https://github.com/avevlad/gulp-connect)
   * [gulp-less](https://github.com/plus3network/gulp-less)
@@ -61,6 +62,11 @@ Validate JS with JSHint and concatenates different files to one:
 ```
 grunt scripts  
 gulp scripts
+```
+
+Convert a set of images into a spritesheet and corresponding CSS variables:
+```
+grunt sprites  
 ```
 
 Minify PNG and JPEG images:

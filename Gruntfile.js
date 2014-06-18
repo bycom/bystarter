@@ -6,15 +6,15 @@ module.exports = function(grunt) {
     port: 9001,
     root: 'html',
     src: {
-      styles: '_stylesheets',
-      scripts: '_scripts',
-      images: '_images',
-      html: '_patterns'
+      styles: '_stylesheets/',
+      scripts: '_scripts/',
+      images: '_images/',
+      html: '_patterns/'
     },
     dest: {
-      styles: 'css',
-      scripts: 'scripts',
-      images: 'images'
+      styles: 'css/',
+      scripts: 'scripts/',
+      images: 'images/'
     }
   };
 
@@ -39,10 +39,10 @@ module.exports = function(grunt) {
         livereload: true
       },
       files: [
-        '<%= cfg.root %>/<%= cfg.src.styles %>/**/*.less', 
-        '<%= cfg.root %>/<%= cfg.src.scripts %>/**/*.js', 
-        '<%= cfg.root %>/<%= cfg.src.html %>/**/*.html', 
-        '<%= cfg.root %>/index.html'
+        '<%= cfg.root %><%= cfg.src.styles %>**/*.less', 
+        '<%= cfg.root %><%= cfg.src.scripts %>**/*.js', 
+        '<%= cfg.root %><%= cfg.src.html %>**/*.html', 
+        '<%= cfg.root %>index.html'
       ],
       tasks: ['default']
     },
@@ -50,10 +50,10 @@ module.exports = function(grunt) {
     less: {
       development: {
         options: {
-          paths: ['<%= cfg.root %>/<%= cfg.src.styles %>']
+          paths: ['<%= cfg.root %><%= cfg.src.styles %>']
         },
         files: {
-          '<%= cfg.root %>/<%= cfg.dest.styles %>/main.css': '<%= cfg.root %>/<%= cfg.src.styles %>/main.less'
+          '<%= cfg.root %><%= cfg.dest.styles %>main.css': '<%= cfg.root %><%= cfg.src.styles %>main.less'
         }
       }
     },
@@ -65,9 +65,9 @@ module.exports = function(grunt) {
       },
       minify: {
         expand: true,
-        cwd: '<%= cfg.root %>/<%= cfg.dest.styles %>',
+        cwd: '<%= cfg.root %><%= cfg.dest.styles %>',
         src: ['*.css', '!*.min.css'],
-        dest: '<%= cfg.root %>/<%= cfg.dest.styles %>/',
+        dest: '<%= cfg.root %><%= cfg.dest.styles %>',
         ext: '.min.css'
       }
     },
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
       },
       development: {
         files: {
-          '<%= cfg.root %>/<%= cfg.dest.styles %>': ['<%= cfg.root %>/<%= cfg.dest.styles %>/*.css', '!*.min.css']
+          '<%= cfg.root %><%= cfg.dest.styles %>': ['<%= cfg.root %><%= cfg.dest.styles %>*.css', '!*.min.css']
         }
       }
     },
@@ -88,21 +88,21 @@ module.exports = function(grunt) {
         node: true,
         reporter: require('jshint-stylish')
       },
-      beforeconcat: ['Gruntfile.js', '<%= cfg.root %>/<%= cfg.src.scripts %>/*.js'],
-      afterconcat: ['<%= cfg.root %>/<%= cfg.dest.scripts %>/main.js']
+      beforeconcat: ['Gruntfile.js', '<%= cfg.root %><%= cfg.src.scripts %>*.js'],
+      afterconcat: ['<%= cfg.root %><%= cfg.dest.scripts %>main.js']
     },
 
     concat: {
       development: {
         src: [
-          '<%= cfg.root %>/<%= cfg.src.scripts %>/main.js',
-          '<%= cfg.root %>/<%= cfg.src.scripts %>/*.js'
+          '<%= cfg.root %><%= cfg.src.scripts %>main.js',
+          '<%= cfg.root %><%= cfg.src.scripts %>*.js'
         ],
-        dest: '<%= cfg.root %>/<%= cfg.dest.scripts %>/main.js'
+        dest: '<%= cfg.root %><%= cfg.dest.scripts %>main.js'
       },
       plugins: {
-        src: ['<%= cfg.root %>/<%= cfg.src.scripts %>/plugins/*.js'],
-        dest: '<%= cfg.root %>/<%= cfg.dest.scripts %>/plugins.js'
+        src: ['<%= cfg.root %><%= cfg.src.scripts %>plugins/*.js'],
+        dest: '<%= cfg.root %><%= cfg.dest.scripts %>plugins.js'
       }
     },
 
@@ -112,8 +112,8 @@ module.exports = function(grunt) {
       },
       development: {
         files: {
-          '<%= cfg.root %>/<%= cfg.dest.scripts %>/plugins.js':  ['<%= cfg.root %>/<%= cfg.dest.scripts %>/plugins.js'],
-          '<%= cfg.root %>/<%= cfg.dest.scripts %>/main.min.js': ['<%= cfg.root %>/<%= cfg.dest.scripts %>/main.js']
+          '<%= cfg.root %><%= cfg.dest.scripts %>plugins.js':  ['<%= cfg.root %><%= cfg.dest.scripts %>plugins.js'],
+          '<%= cfg.root %><%= cfg.dest.scripts %>main.min.js': ['<%= cfg.root %><%= cfg.dest.scripts %>main.js']
         }
       }
     },
@@ -128,11 +128,20 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: '<%= cfg.root %>/<%= cfg.src.images %>',
+            cwd: '<%= cfg.root %><%= cfg.src.images %>',
             src: ['**/*.png', '**/*.jpg'],
-            dest: '<%= cfg.root %>/<%= cfg.dest.images %>'
+            dest: '<%= cfg.root %><%= cfg.dest.images %>'
           }
         ]
+      }
+    },
+
+    sprite: {
+      icons: {
+        src: '<%= cfg.root %><%= cfg.src.images %>icons/*.png',
+        destImg: '<%= cfg.root %><%= cfg.dest.images %>icons.png',
+        destCSS: '<%= cfg.root %><%= cfg.src.styles %>utilities/icons.less',
+        algorithm: 'binary-tree'
       }
     },
 
@@ -141,9 +150,9 @@ module.exports = function(grunt) {
         files: [
           { 
             expand: true, 
-            cwd: '<%= cfg.root %>/<%= cfg.src.scripts %>/libs/',
+            cwd: '<%= cfg.root %><%= cfg.src.scripts %>libs/',
             src: ['*'], 
-            dest: '<%= cfg.root %>/<%= cfg.dest.scripts %>/libs/',
+            dest: '<%= cfg.root %><%= cfg.dest.scripts %>libs/',
             filter: 'isFile'
           }
         ]
@@ -162,10 +171,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-spritesmith');
 
   grunt.registerTask('styles', ['less:development', 'cmq:development']);
   grunt.registerTask('scripts', ['jshint:beforeconcat', 'concat:development', 'concat:plugins', 'jshint:afterconcat']);
-  grunt.registerTask('images', ['imagemin']);
+  grunt.registerTask('sprites', ['sprite:icons']);
+  grunt.registerTask('images', ['sprites', 'imagemin']);
   grunt.registerTask('default', ['styles', 'scripts', 'copy']);
   grunt.registerTask('dist', ['styles', 'cssmin', 'scripts', 'uglify:development', 'images']);
   grunt.registerTask('server', ['connect', 'watch']);
