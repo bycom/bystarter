@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
   var globalConfig = {
     port: 9001,
-    root: 'html',
+    root: 'html/',
     src: {
       styles: '_stylesheets/',
       scripts: '_scripts/',
