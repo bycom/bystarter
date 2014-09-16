@@ -41,6 +41,7 @@ module.exports = function(grunt) {
       files: [
         '<%= cfg.root %><%= cfg.src.styles %>**/*.less', 
         '<%= cfg.root %><%= cfg.src.scripts %>**/*.js', 
+        '<%= cfg.root %><%= cfg.src.images %>**/*.*', 
         '<%= cfg.root %><%= cfg.src.html %>**/*.html', 
         '<%= cfg.root %>index.html'
       ],
@@ -141,7 +142,8 @@ module.exports = function(grunt) {
         src: '<%= cfg.root %><%= cfg.src.images %>icons/*.png',
         destImg: '<%= cfg.root %><%= cfg.dest.images %>icons.png',
         destCSS: '<%= cfg.root %><%= cfg.src.styles %>utilities/icons.less',
-        algorithm: 'binary-tree'
+        algorithm: 'binary-tree',
+        engine: 'phantomjs'
       }
     },
 
