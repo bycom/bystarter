@@ -18,25 +18,11 @@ Front-end boilerplate for faster and easier web development.
   * [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)  
   * [grunt-contrib-copy](https://github.com/gruntjs/grunt-contrib-copy)  
   * [grunt-spritesmith](https://github.com/Ensighten/grunt-spritesmith)  
-* Gulp 3.7.0
-  * [gulp-connect](https://github.com/avevlad/gulp-connect)
-  * [gulp-less](https://github.com/plus3network/gulp-less)
-  * [gulp-combine-media-queries](https://github.com/konitter/gulp-combine-media-queries)
-  * [gulp-jshint](https://github.com/spenceralger/gulp-jshint)
-  * [gulp-concat](https://github.com/wearefractal/gulp-concat)
-  * [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin)
-  * [gulp-cssmin](https://github.com/chilijung/gulp-cssmin/)
-  * [gulp-uglify](https://github.com/terinjokes/gulp-uglify)
 
 ### LiveReload
 You can use livereload on your project by installing a browser extension or including the JavaSript snippet:
 * [Chrome Extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en)
 * ```<script src="//localhost:35729/livereload.js"></script>```
-
-### Grunt or Gulp
-It's your call. If you prefer configuration over code, use Grunt, or use Gulp if you prefer code over configuration.
-Both are included and both have the same configuration and the same tasks.  
-The only thing you have to do is delete the default `package.json` and rename the `package.gulp.json` to `package.json` before doing `npm install`.
 
 ## Installation
 ```
@@ -49,19 +35,16 @@ npm install
 Create a static server at port 9001 that watches for file changes and enables livereload:
 ```
 grunt server  
-gulp server
 ```
 
 Compile LESS to CSS and lint all the generated files:
 ```
 grunt styles  
-gulp styles
 ```
 
 Validate JS with JSHint and concatenates different files to one:
 ```
 grunt scripts  
-gulp scripts
 ```
 
 Convert a set of images into a spritesheet and corresponding CSS variables:
@@ -72,19 +55,16 @@ grunt sprites
 Minify PNG and JPEG images:
 ```
 grunt images  
-gulp images
 ```
 
 Development build:
 ```
 grunt  
-gulp
 ```
 
 Production build:
 ```
 grunt dist  
-gulp dist
 ``` 
 
 ## Browser Support

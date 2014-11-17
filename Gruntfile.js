@@ -49,7 +49,7 @@ module.exports = function(grunt) {
     },
     
     less: {
-      development: {
+      main: {
         options: {
           paths: ['<%= cfg.root %><%= cfg.src.styles %>']
         },
@@ -77,7 +77,7 @@ module.exports = function(grunt) {
       options: {
         log: true
       },
-      development: {
+      main: {
         files: {
           '<%= cfg.root %><%= cfg.dest.styles %>': ['<%= cfg.root %><%= cfg.dest.styles %>*.css', '!*.min.css']
         }
@@ -94,7 +94,7 @@ module.exports = function(grunt) {
     },
 
     concat: {
-      development: {
+      main: {
         src: [
           '<%= cfg.root %><%= cfg.src.scripts %>main.js',
           '<%= cfg.root %><%= cfg.src.scripts %>*.js'
@@ -111,7 +111,7 @@ module.exports = function(grunt) {
       options: {
         banner: '/*!\n <%= pkg.description %>\n @author: <%= pkg.author %>\n @email: <%= pkg.email %>\n @url: <%= pkg.homepage %>\n @version: <%= pkg.version %>\n*/\n'
       },
-      development: {
+      main: {
         files: {
           '<%= cfg.root %><%= cfg.dest.scripts %>plugins.js':  ['<%= cfg.root %><%= cfg.dest.scripts %>plugins.js'],
           '<%= cfg.root %><%= cfg.dest.scripts %>main.min.js': ['<%= cfg.root %><%= cfg.dest.scripts %>main.js']
@@ -120,7 +120,7 @@ module.exports = function(grunt) {
     },
 
     imagemin: {
-      development: {
+      main: {
         options: {
           optimizationLevel: 7,
           pngquant: true,
@@ -175,12 +175,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-spritesmith');
 
-  grunt.registerTask('styles', ['less:development', 'cmq:development']);
-  grunt.registerTask('scripts', ['jshint:beforeconcat', 'concat:development', 'concat:plugins', 'jshint:afterconcat']);
+  grunt.registerTask('styles', ['less:main', 'cmq:main']);
+  grunt.registerTask('scripts', ['jshint:beforeconcat', 'concat:main', 'concat:plugins', 'jshint:afterconcat']);
   grunt.registerTask('sprites', ['sprite:icons']);
   grunt.registerTask('images', ['sprites', 'imagemin']);
   grunt.registerTask('default', ['styles', 'scripts', 'copy']);
-  grunt.registerTask('dist', ['styles', 'cssmin', 'scripts', 'uglify:development', 'images']);
+  grunt.registerTask('dist', ['styles', 'cssmin', 'scripts', 'uglify:main', 'images']);
   grunt.registerTask('server', ['connect', 'watch']);
 
 };
