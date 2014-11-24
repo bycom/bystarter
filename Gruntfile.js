@@ -14,7 +14,8 @@ module.exports = function(grunt) {
     dest: {
       styles: 'css/',
       scripts: 'scripts/',
-      images: 'images/'
+      images: 'images/',
+      html: 'pages/'
     }
   };
 
@@ -42,8 +43,9 @@ module.exports = function(grunt) {
         '<%= cfg.root %><%= cfg.src.styles %>**/*.less', 
         '<%= cfg.root %><%= cfg.src.scripts %>**/*.js', 
         '<%= cfg.root %><%= cfg.src.images %>**/*.*', 
-        '<%= cfg.root %><%= cfg.src.html %>**/*.html', 
-        '<%= cfg.root %>index.html'
+        '<%= cfg.root %><%= cfg.src.html %>**/*.hbs', 
+        '<%= cfg.root %>index.html',
+        'Gruntfile.js'
       ],
       tasks: ['default']
     },
@@ -159,6 +161,21 @@ module.exports = function(grunt) {
           }
         ]
       }
+    },
+
+    'compile-handlebars': {
+      main: {
+        preHTML: '<%= cfg.root %><%= cfg.src.html %>/head.html',
+        postHTML: '<%= cfg.root %><%= cfg.src.html %>/foot.html',
+        template: '<%= cfg.root %><%= cfg.src.html %>**/*.hbs',
+        partials: '<%= cfg.root %><%= cfg.src.html %>**/*.hbs',
+        templateData: '<%= cfg.root %><%= cfg.src.html %>**/.json',
+        output: '<%= cfg.root %><%= cfg.dest.html %>**/*.html'
+      }
+    },
+
+    clean: {
+      pages: ['<%= cfg.root %><%= cfg.dest.html %>']
     }
 
   });
@@ -174,12 +191,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-spritesmith');
+  grunt.loadNpmTasks('grunt-compile-handlebars');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('styles', ['less:main', 'cmq:main']);
   grunt.registerTask('scripts', ['jshint:beforeconcat', 'concat:main', 'concat:plugins', 'jshint:afterconcat']);
   grunt.registerTask('sprites', ['sprite:icons']);
   grunt.registerTask('images', ['sprites', 'imagemin']);
-  grunt.registerTask('default', ['styles', 'scripts', 'copy']);
+  grunt.registerTask('default', ['styles', 'scripts', 'copy', 'clean:pages', 'compile-handlebars:main']);
   grunt.registerTask('dist', ['styles', 'cssmin', 'scripts', 'uglify:main', 'images']);
   grunt.registerTask('server', ['connect', 'watch']);
 
