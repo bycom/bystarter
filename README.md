@@ -18,6 +18,9 @@ Front-end boilerplate for faster and easier web development.
   * [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)  
   * [grunt-contrib-copy](https://github.com/gruntjs/grunt-contrib-copy)  
   * [grunt-spritesmith](https://github.com/Ensighten/grunt-spritesmith)  
+  * [grunt-compile-handlebars](https://github.com/gruntjs/grunt-contrib-handlebars)
+  * [grunt-prettify](https://github.com/jonschlinkert/grunt-prettify)
+  * [grunt-contrib-clean](https://github.com/gruntjs/grunt-contrib-clean)
 
 ### LiveReload
 You can use livereload on your project by installing a browser extension or including the JavaSript snippet:
@@ -57,6 +60,11 @@ Minify PNG and JPEG images:
 grunt images  
 ```
 
+Compile [Handlebars](http://handlebarsjs.com) templates and outputs static HTML:
+```
+grunt html  
+```
+
 Development build:
 ```
 grunt  
@@ -72,7 +80,7 @@ grunt dist
 * Google Chrome 14+
 * Safari 5+
 * Opera 11+
-* Internet Explorer 8+
+* Internet Explorer 9+
 
 ## Authors and Contributors
 Sérgio Santos (@s3rgiosan)  
