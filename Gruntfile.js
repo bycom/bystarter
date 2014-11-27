@@ -165,12 +165,30 @@ module.exports = function(grunt) {
 
     'compile-handlebars': {
       main: {
-        preHTML: '<%= cfg.root %><%= cfg.src.html %>/head.html',
-        postHTML: '<%= cfg.root %><%= cfg.src.html %>/foot.html',
-        template: '<%= cfg.root %><%= cfg.src.html %>**/*.hbs',
+        preHTML: '<%= cfg.root %><%= cfg.src.utils %>globals/head.html',
+        postHTML: '<%= cfg.root %><%= cfg.src.utils %>globals/foot.html',
+        template: '<%= cfg.root %><%= cfg.src.html %>templates/*.hbs',
         partials: '<%= cfg.root %><%= cfg.src.html %>**/*.hbs',
         templateData: '<%= cfg.root %><%= cfg.src.html %>**/.json',
-        output: '<%= cfg.root %><%= cfg.dest.html %>**/*.html'
+        output: '<%= cfg.root %><%= cfg.dest.html %>*.html',
+        helpers: '<%= cfg.root %><%= cfg.src.utils %>helpers/**/*.js'
+      }
+    },
+
+    prettify: {
+      options: {
+        condense: false,
+        padcomments: true,
+        indent: 2,
+        indent_char: ' ',
+        brace_style: 'end-expand',
+        preserve_newlines: true
+      },
+      files: {
+        expand: true, 
+        cwd: '<%= cfg.root %><%= cfg.dest.html %>',
+        src: ['**/*.html'],
+        dest: '<%= cfg.root %><%= cfg.dest.html %>'
       }
     },
 
@@ -192,14 +210,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-spritesmith');
   grunt.loadNpmTasks('grunt-compile-handlebars');
+  grunt.loadNpmTasks('grunt-prettify');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('styles', ['less:main', 'cmq:main']);
   grunt.registerTask('scripts', ['jshint:beforeconcat', 'concat:main', 'concat:plugins', 'jshint:afterconcat']);
   grunt.registerTask('sprites', ['sprite:icons']);
   grunt.registerTask('images', ['sprites', 'imagemin']);
-  grunt.registerTask('default', ['styles', 'scripts', 'copy', 'clean:pages', 'compile-handlebars:main']);
-  grunt.registerTask('dist', ['styles', 'cssmin', 'scripts', 'uglify:main', 'images']);
+  grunt.registerTask('html', ['clean:pages', 'compile-handlebars:main', 'prettify']);
+  grunt.registerTask('default', ['styles', 'scripts', 'html', 'copy']);
+  grunt.registerTask('dist', ['default', 'cssmin', 'uglify:main', 'images']);
   grunt.registerTask('server', ['connect', 'watch']);
 
 };
