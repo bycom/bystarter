@@ -21,6 +21,7 @@
     "grunt-spritesmith": "^2.1.0",
     "grunt-compile-handlebars": "^0.7.8",
     "grunt-contrib-clean": "^0.6.0",
-    "grunt-prettify": "^0.4.0"
+    "grunt-prettify": "^0.4.0",
+    "imagemin-jpeg-recompress": "^4.0.0"
   }
 }
