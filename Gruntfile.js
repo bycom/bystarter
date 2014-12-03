@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = function(grunt) {
+  
+  var imageCompressEngine = require('imagemin-jpeg-recompress');
 
   var globalConfig = {
     port: 9001,
@@ -126,7 +128,8 @@ module.exports = function(grunt) {
         options: {
           optimizationLevel: 7,
           pngquant: true,
-          progressive: true
+          progressive: true,
+          use: [imageCompressEngine()]
         },
         files: [
           {
