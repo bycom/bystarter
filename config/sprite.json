@@ -1,0 +1,9 @@
+{
+  "icons": {
+    "src": "<%= cfg.root %><%= cfg.src.images %>icons/*.png",
+    "destImg": "<%= cfg.root %><%= cfg.dest.images %>icons.png",
+    "destCSS": "<%= cfg.root %><%= cfg.src.styles %>utilities/icons.less",
+    "algorithm": "binary-tree",
+    "engine": "phantomjs"
+  }
+}

@@ -1,0 +1,13 @@
+{
+
+  "main": {
+    "files": {
+      "<%= cfg.root %><%= cfg.dest.scripts %>plugins.js": [
+        "<%= cfg.root %><%= cfg.dest.scripts %>plugins.js"
+      ],
+      "<%= cfg.root %><%= cfg.dest.scripts %>main.min.js": [
+        "<%= cfg.root %><%= cfg.dest.scripts %>main.js"
+      ]
+    }
+  }
+}

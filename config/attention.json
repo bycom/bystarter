@@ -1,0 +1,9 @@
+{
+  "Google Analytics": {
+    "options": {
+      "message": "Change your Analytics ID !!\nIf you didn't change, correct it pls !!",
+      "border": "?",
+      "borderColor": "bgRed"
+    }
+  }
+}
