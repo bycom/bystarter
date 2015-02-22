@@ -2,24 +2,24 @@
   "less": {
     "files": "<%= cfg.root %><%= cfg.src.styles %>**/*.less",
     "tasks": [
-      "less"
+      "styles"
     ]
   },
   "scripts": {
     "files": "<%= cfg.root %><%= cfg.src.scripts %>**/*.js",
     "tasks": [
-      "jshint"
+      "scripts"
     ]
   },
   "html": {
     "files": [
       "<%= cfg.root %><%= cfg.src.html %>**/*.hbs",
-      "html/pages/index.html",
+      "<%= cfg.root %><%= cfg.dest.html %>index.html",
       "<%= cfg.root %>index.html",
       "Gruntfile.js"
     ],
     "tasks": [
-      "compile-handlebars"
+      "html"
     ]
   }
 }

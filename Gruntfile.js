@@ -40,7 +40,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', ['styles', 'scripts', 'html', 'copy']);
     grunt.registerTask('server', ['browserSync', 'watch']);
-    grunt.registerTask('styles', ['clean:css', 'less:compile', 'cmq:main', 'less:sourceMap']);
+    grunt.registerTask('styles', ['clean:css', 'less:compile', 'cmq:main', 'less:sourceMap', "autoprefixer"]);
     grunt.registerTask('scripts', ['jshint:beforeconcat', 'concat:main', 'concat:plugins', 'jshint:afterconcat']);
     grunt.registerTask('html', ['clean:pages', 'compile-handlebars:main', 'prettify']);
     grunt.registerTask('images', ['sprite', 'imagemin']);
