@@ -4,13 +4,18 @@
 module.exports = function (grunt) {
 
     //loads the various task configuration files
-    var timer       = require('time-grunt')(grunt);
-    var tasks       = require('load-grunt-tasks')(grunt);
-    var configs     = require('load-grunt-configs')(grunt);
-    var ice         = require('imagemin-jpeg-recompress');
+    require('time-grunt')(grunt);
+    require('load-grunt-tasks')(grunt);
+    var ice = require('imagemin-jpeg-recompress');
 
-    configs = require( 'load-grunt-configs' )( grunt, {
-        //pkg: grunt.file.readJSON('package.json'),
+    // path to tasks and global variables
+    var options = {
+        // tasks pasth
+        config : {
+            src: "html/_tasks/*.*"
+        },
+        pkg : grunt.file.readJSON('package.json'),
+        // Global variables
         cfg : {
             root : 'html/',
             src  : {
@@ -27,9 +32,11 @@ module.exports = function (grunt) {
                 html    : 'pages/'
             }
         }
-    });
+    };
 
-  grunt.initConfig( configs );
+    var configs = require( 'load-grunt-configs' )( grunt, options);
+
+    grunt.initConfig( configs );
 
     grunt.registerTask('default', ['styles', 'scripts', 'html', 'copy']);
     grunt.registerTask('server', ['browserSync', 'watch']);
