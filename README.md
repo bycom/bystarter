@@ -78,6 +78,9 @@ grunt dist
 ```
 $ npm update caniuse-db
 ```
+[Disabeling some prefixers](https://www.npmjs.com/package/autoprefixer#disabling)  
+[Autoprefixer Playground](http://simevidas.jsbin.com/gufoko/quiet)  
+
 ### BrowserSync Features
 1. **Scroll** - I can keep your pages in sync when scrolling.
 2. **Forms** - You fill out a form in one browser, I'll copy the data to all the others.
@@ -89,6 +92,17 @@ $ npm update caniuse-db
 8. **Public URL** - View your website via a URL that any internet connected device can access & maintain all BrowserSync features.
 9. **Browser Stack support** - Use the all of my features when viewing your site through Browser Stack.
 
+##Access URLs
+e.g.:
+```
+ --------------------------------------
+       Local: http://localhost:3000
+    External: http://192.168.4.212:3000
+ --------------------------------------
+          UI: http://localhost:3001
+ UI External: http://192.168.4.212:3001
+ --------------------------------------
+```
 
 ## Browser Support
 * Mozilla Firefox 5+
