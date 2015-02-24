@@ -45,6 +45,5 @@ module.exports = function (grunt) {
     grunt.registerTask('html', ['clean:pages', 'compile-handlebars:main', 'prettify']);
     grunt.registerTask('images', ['sprite', 'imagemin']);
     grunt.registerTask('sprites', ['sprite:icons']);
-    grunt.registerTask('notifyme', ['notify:GoogleAnalytics', 'attention']);
-    grunt.registerTask('dist', ['default', 'cssmin', 'uglify:main', 'images', 'notifyme']);
+    grunt.registerTask('dist', ['default', 'cssmin', 'uglify:main', 'images']);
 };

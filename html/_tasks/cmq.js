@@ -1,13 +1,15 @@
-{
-  "options": {
-    "log": true
+'use strict';
+
+module.exports = {
+  options: {
+    log: true
   },
-  "main": {
-    "files": {
+  main: {
+    files: {
         "<%= cfg.root %><%= cfg.dest.styles %>": [
         "<%= cfg.root %><%= cfg.dest.styles %>*.css",
         "!*.min.css"
       ]
     }
   }
-}
+};

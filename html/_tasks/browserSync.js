@@ -1,6 +1,8 @@
-{
-  "bsFiles": {
-    "src": [
+'use strict';
+
+module.exports = {
+  bsFiles: {
+    src: [
       "<%= cfg.root %><%= cfg.dest.styles %>**/*.css",
       "<%= cfg.root %><%= cfg.dest.html %>**/*.html",
       "<%= cfg.root %><%= cfg.src.scripts %>**/*.js",
@@ -9,15 +11,15 @@
       "Gruntfile.js"
     ]
   },
-  "options": {
-    "watchTask": true,
-    "open": "ui",
-    "timestamps": false,
-    "server": {
-      "baseDir": [
+  options: {
+    watchTask: true,
+    open: false,
+    timestamps: false,
+    server: {
+      baseDir: [
         "<%= cfg.root %>",
         "<%= cfg.root %><%= cfg.dest.html %>"
       ]
     }
   }
-}
+};

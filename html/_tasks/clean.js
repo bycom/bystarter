@@ -1,8 +1,10 @@
-{
-  "pages": [
+'use strict';
+
+module.exports = {
+  pages: [
     "<%= cfg.root %><%= cfg.dest.html %>/*.html"
   ],
-  "css": [
+  css: [
     "<%= cfg.root %><%= cfg.dest.styles %>*.css"
   ]
-}
+};
