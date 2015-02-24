@@ -13,7 +13,7 @@ module.exports = {
   },
   options: {
     watchTask: true,
-    open: false,
+    open: "ui",
     timestamps: false,
     server: {
       baseDir: [
