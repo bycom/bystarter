@@ -14,6 +14,7 @@ module.exports = {
   options: {
     watchTask: true,
     open: "ui",
+    reloadDelay: 2000,
     timestamps: false,
     server: {
       baseDir: [
