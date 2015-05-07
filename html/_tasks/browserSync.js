@@ -5,7 +5,7 @@ module.exports = {
     src: [
       "<%= cfg.root %><%= cfg.dest.styles %>**/*.css",
       "<%= cfg.root %><%= cfg.dest.html %>**/*.html",
-      "<%= cfg.root %><%= cfg.src.scripts %>**/*.js",
+      "<%= cfg.root %><%= cfg.dest.scripts %>**/*.js",
       "<%= cfg.root %><%= cfg.src.html %>**/*.hbs",
       "<%= cfg.root %>index.html",
       "Gruntfile.js"
