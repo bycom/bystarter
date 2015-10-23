@@ -6,7 +6,6 @@ module.exports = function (grunt) {
     //loads the various task configuration files
     require('time-grunt')(grunt);
     require('load-grunt-tasks')(grunt);
-    var ice = require('imagemin-jpeg-recompress');
 
     // path to tasks and global variables
     var options = {

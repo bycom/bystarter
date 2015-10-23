@@ -4,15 +4,13 @@ module.exports = {
   less: {
     files: "<%= cfg.root %><%= cfg.src.styles %>**/*.less",
     tasks: [
-      "styles",
-      "watch"
+      "styles"
     ]
   },
   scripts: {
     files: "<%= cfg.root %><%= cfg.src.scripts %>**/*.js",
     tasks: [
-      "scripts",
-      "watch"
+      "scripts"
     ]
   },
   html: {
@@ -23,8 +21,7 @@ module.exports = {
       "Gruntfile.js"
     ],
     tasks: [
-      "html",
-      "watch"
+      "html"
     ]
   }
 }

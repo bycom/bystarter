@@ -14,11 +14,11 @@ module.exports = {
 	},
 	sourceMap: {
 		options : {
-      optimization : 2,
-      sourceMap : true,
-      sourceMapFileInline : true,
-      dumpLineNumbers : 'false'
-    },
+			optimization : 2,
+			sourceMap : true,
+			sourceMapFileInline : true,
+			dumpLineNumbers : 'false'
+		},
 		src: "<%= cfg.root %><%= cfg.src.styles %>main.less",
 		dest: "<%= cfg.root %><%= cfg.dest.styles %>main.css"
 	}
