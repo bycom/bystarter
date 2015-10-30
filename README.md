@@ -7,7 +7,7 @@ Front-end boilerplate for faster and easier web development.
 * Modernizr 2.6.2
 * jQuery 1.9.1
 * Grunt 0.4.1  
-  * [grunt-autoprefixer](https://github.com/nDmitry/grunt-autoprefixer)   
+  * [postcss](https://github.com/nDmitry/grunt-postcss)
   * [grunt-browser-sync](https://github.com/BrowserSync/grunt-browser-sync)
   * [grunt-combine-media-queries](https://github.com/buildingblocks/grunt-combine-media-queries)
   * [grunt-compile-handlebars](https://github.com/gruntjs/grunt-contrib-handlebars)  

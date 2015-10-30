@@ -5,7 +5,6 @@ module.exports = {
     "<%= cfg.root %><%= cfg.dest.html %>/*.html"
   ],
   css: [
-    "<%= cfg.root %><%= cfg.dest.styles %>*.css",
-    "!<%= cfg.root %><%= cfg.dest.styles %>*.min.css"
+    "<%= cfg.root %><%= cfg.dest.styles %>*.css"
   ]
 };

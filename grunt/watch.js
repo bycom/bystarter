@@ -13,6 +13,14 @@ module.exports = {
       "scripts"
     ]
   },
+  images: {
+    files: [
+      "<%= cfg.root %><%= cfg.src.images %>**/**/*.*"
+    ],
+    tasks: [
+      "images"
+    ]
+  },
   html: {
     files: [
       "<%= cfg.root %><%= cfg.src.html %>**/*.hbs",

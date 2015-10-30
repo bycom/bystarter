@@ -8,13 +8,15 @@ module.exports = {
       optimizationLevel: 7,
       pngquant: true,
       progressive: true,
-      use: [imageCompressEngine()]
+      use: [
+        imageCompressEngine()
+      ]
     },
     files: [{
       expand: true,
       cwd: '<%= cfg.root %><%= cfg.src.images %>',
-      src: ['**/*.{png,jpg,jpeg,gif,ico}'],
-      dest: '<%= cfg.dist %><%= cfg.dest.images %>'
+      src: ['**/*.{png,jpg}','icons/*.{png,jpg}'],
+      dest: '<%= cfg.root %><%= cfg.dest.images %>'
     }]
   }
 };
