@@ -21,7 +21,7 @@ module.exports = {
 					pictureAspect: 'noChange',
 					themeColor: '#ffffff',
 					manifest: {
-						name: 'almaria',
+						name: 'Project name', // Project name
 						display: 'browser',
 						orientation: 'notSet',
 						onConflict: 'override'
