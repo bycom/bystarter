@@ -45,4 +45,5 @@ module.exports = function (grunt) {
     grunt.registerTask(  'images', ['sprite', 'imagemin']);
     grunt.registerTask( 'sprites', ['sprite:icons']);
     grunt.registerTask(    'dist', ['default', 'cssmin', 'uglify:main', 'images']);
+    grunt.registerTask( 'favicon', ['realFavicon']);
 };
