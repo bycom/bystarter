@@ -2,11 +2,17 @@
 
 module.exports = {
 	favicons: {
-		src: '<%= cfg.root %><%= cfg.src.images %>favicon.png',
-		dest: '<%= cfg.root %><%= cfg.dest.html %>',
+		src: '<%= cfg.root %><%= cfg.src.images %>favicon/',
+		dest: '<%= cfg.root %><%= cfg.dest.images %>favicon/',
 		options: {
-			iconsPath: '/',
-			html: [ '<%= cfg.root %><%= cfg.src.utils %>globals/head.html' ],
+			iconsPath: '<%= cfg.dest.images %>favicon/',
+			//html: [{
+			//	expand: true,
+			//	cwd: '<%= cfg.root %><%= cfg.dest.html %>',
+			//	src: ['*.html'],
+			//	dest: '<%= cfg.root %><%= cfg.dest.html %>'
+			//}],
+			//html: [ '<%= cfg.root %><%= cfg.dest.html %>.html' ],
 			design: {
 				ios: {
 					pictureAspect: 'noChange'
@@ -21,7 +27,7 @@ module.exports = {
 					pictureAspect: 'noChange',
 					themeColor: '#ffffff',
 					manifest: {
-						name: 'Project name', // Project name
+						name: 'Project Name', // Project Name
 						display: 'browser',
 						orientation: 'notSet',
 						onConflict: 'override'

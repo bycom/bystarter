@@ -17,18 +17,20 @@ module.exports = function (grunt) {
         // Global variables
         cfg : {
             root : 'html/',
+	        dev_src : '_workflow/',
+	        dist : 'dist/',
             src  : {
-                styles  : '_stylesheets/',
-                scripts : '_scripts/',
-                images  : '_images/',
-                html    : '_patterns/',
-                utils   : '_patterns/utilities/'
+                styles  : '<%= cfg.dev_src %>_stylesheets/',
+                scripts : '<%= cfg.dev_src %>_scripts/',
+                images  : '<%= cfg.dev_src %>_images/',
+                html    : '<%= cfg.dev_src %>_patterns/',
+                utils   : '<%= cfg.dev_src %>_patterns/utilities/'
             },
             dest : {
-                styles  : 'css/',
-                scripts : 'scripts/',
-                images  : 'images/',
-                html    : 'pages/'
+                styles  : '<%= cfg.dist %>css/',
+                scripts : '<%= cfg.dist %>scripts/',
+                images  : '<%= cfg.dist %>images/',
+                html    : '<%= cfg.dist %>pages/'
             }
         }
     };
@@ -37,13 +39,14 @@ module.exports = function (grunt) {
 
     grunt.initConfig( configs );
 
-    grunt.registerTask( 'default', ['styles', 'scripts', 'html', 'copy']);
-    grunt.registerTask(  'server', ['browserSync', 'watch']);
-    grunt.registerTask(  'styles', ['clean:css', 'sprites', 'less:compile', 'cmq:main', 'postcss:dist', 'less:sourceMap']);
-    grunt.registerTask( 'scripts', ['jshint:beforeconcat', 'concat:main', 'concat:plugins', 'jshint:afterconcat']);
-    grunt.registerTask(    'html', ['clean:pages', 'compile-handlebars:main', 'prettify']);
-    grunt.registerTask(  'images', ['sprite', 'imagemin']);
-    grunt.registerTask( 'sprites', ['sprite:icons']);
-    grunt.registerTask(    'dist', ['default', 'cssmin', 'uglify:main', 'images']);
-    grunt.registerTask( 'favicon', ['realFavicon']);
+    grunt.registerTask(      'default', ['styles', 'coffeeScript'/*'scripts'*/, 'html', 'copy'/*, 'favicon'*/]);
+    grunt.registerTask(       'server', ['browserSync', 'watch']);
+    grunt.registerTask(       'styles', ['clean:css', 'sprites', 'less:compile', 'cmq:main', 'postcss:dist', 'less:sourceMap']);
+    grunt.registerTask(      'scripts', ['jshint:beforeconcat', 'concat:main', 'concat:plugins', 'jshint:afterconcat']);
+    grunt.registerTask( 'coffeeScript', ['coffee', 'concat', 'jshint:afterconcat_cff', 'clean:coffee_temp']);
+    grunt.registerTask(         'html', ['clean:pages', 'compile-handlebars:main', 'prettify']);
+    grunt.registerTask(       'images', ['sprite', 'imagemin']);
+    grunt.registerTask(      'sprites', ['sprite:icons']);
+    grunt.registerTask(         'dist', ['default', 'cssmin', 'uglify:main', 'images']);
+    grunt.registerTask(      'favicon', ['clean:favicon', 'realFavicon']);
 };
